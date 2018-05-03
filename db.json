@@ -1,0 +1,30 @@
+{
+"key": "provisioning-service-addon",
+"baseUrl": "https://service-gateway-jira-dev.turnitin.org/sms-namespace/sms/sms-serviceName/provisioning",
+"name": "Provisioning Service (dev)",
+"authentication": {
+"type": "jwt"
+},
+"lifecycle": {
+"installed": "/installed",
+"uninstalled": "/uninstalled"
+},
+"scopes": [
+"read",
+"write"
+],
+"modules": {
+"webhooks": [
+{
+"event": "jira:issue_created",
+"url": "/opportunity",
+"filter": "project = 'DEV - Contract Fulfillment' AND description ~ 'SC Location: US'"
+},
+{
+"event": "jira:issue_updated",
+"url": "/opportunity",
+"filter": "project = 'DEV - Contract Fulfillment' AND description ~ 'SC Location: US'"
+}
+]
+}
+}
